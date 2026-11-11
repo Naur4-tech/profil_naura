@@ -1,319 +1,212 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profil Mahasiswa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Mahasiswa - Nasywa Kayana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        body {
+            background-color: #fff9c4;
+            /* Pattern background nanas */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="90" viewBox="0 0 70 90"><text y="50" font-size="40">🍍</text></svg>');
+            background-repeat: repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 520px;
+            border-radius: 24px;
+            padding: 60px 35px 35px 35px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            margin-top: 40px;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(to bottom,#020b35,#0d1f63);
-    overflow:hidden;
-    position:relative;
-}
+        .name {
+            color: #d4a017;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-/* Bintang */
-body::before{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(white 1px, transparent 1px);
-    background-size:120px 120px;
-    opacity:.6;
-}
+        .badge {
+            display: inline-block;
+            background-color: #fbc02d;
+            color: #222222;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
 
-/* Bulan */
-.moon{
-    position:absolute;
-    top:50px;
-    right:120px;
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    background:#fff7c2;
-    box-shadow:0 0 20px #fff7c2;
-}
+        .bio {
+            color: #555555;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-align: center;
+        }
 
-.moon::after{
-    content:"";
-    position:absolute;
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:#020b35;
-    left:20px;
-}
+        .section-title {
+            color: #d4a017;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            margin: 25px 0 12px 0;
+            text-transform: uppercase;
+        }
 
-/* Card */
-.card{
-    width:380px;
-    background:#081b44;
-    border-radius:25px;
-    overflow:hidden;
-    color:white;
-    text-align:center;
-    box-shadow:0 20px 40px rgba(0,0,0,.5);
-    z-index:2;
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
 
-    position:relative;
-}
+        .tag {
+            background-color: #fffde7;
+            color: #8b6b00;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #fff59d;
+        }
 
-.header{
-    height:130px;
-    background:linear-gradient(90deg,#1976d2,#00c6ff);
-    position:relative;
-}
+        .skill-item {
+            margin-bottom: 14px;
+            text-align: left;
+        }
 
-.header::before{
-    content:"";
-    position:absolute;
-    width:70px;
-    height:70px;
-    background:rgba(255,255,255,.2);
-    border-radius:50%;
-    top:20px;
-    left:30px;
-}
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 700;
+            color: #333333;
+            margin-bottom: 6px;
+        }
 
-.header::after{
-    content:"";
-    position:absolute;
-    width:90px;
-    height:90px;
-    background:rgba(255,255,255,.15);
-    border-radius:50%;
-    right:30px;
-    top:20px;
-}
+        .progress-bar-bg {
+            background-color: #eeeeee;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-.profile-img{
-    width:140px;
-    height:140px;
-    border-radius:50%;
-    object-fit:cover;
+        .progress-bar-fill {
+            background-color: #fbc02d;
+            height: 100%;
+            border-radius: 10px;
+        }
 
-    /* Membuat foto naik */
-    margin-top:-70px;
+        .btn-link {
+            display: block;
+            width: 100%;
+            background-color: #fffde7;
+            color: #8b6b00;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #fff59d;
+            margin-top: 8px;
+            transition: all 0.2s ease;
+        }
 
-    /* Bingkai tebal */
-    border:8px solid #0b2452;
-
-    /* Efek timbul */
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.5),
-        0 0 0 5px rgba(255,255,255,0.1);
-
-    position:relative;
-    z-index:10;
-}
-
-.content{
-    padding:20px 30px 30px;
-}
-
-h1{
-    color:#56b6ff;
-    font-size:28px;
-    margin:10px 0;
-}
-
-.badge{
-    display:inline-block;
-    background:#00bcd4;
-    color:white;
-    padding:8px 18px;
-    border-radius:20px;
-    font-size:12px;
-    margin-bottom:15px;
-}
-
-.desc{
-    color:#d5e4ff;
-    line-height:1.8;
-    font-size:14px;
-}
-
-.section{
-    margin-top:25px;
-}
-
-.section-title{
-    color:#59bfff;
-    font-size:13px;
-    letter-spacing:2px;
-    margin-bottom:15px;
-    border-bottom:1px solid rgba(255,255,255,.2);
-    padding-bottom:8px;
-}
-
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-}
-
-.tag{
-    background:#183a79;
-    padding:8px 15px;
-    border-radius:20px;
-    font-size:12px;
-}
-
-.skill{
-    text-align:left;
-    margin-bottom:15px;
-}
-
-.skill span{
-    font-size:13px;
-}
-
-.bar{
-    width:100%;
-    height:8px;
-    background:#27477e;
-    border-radius:10px;
-    margin-top:5px;
-}
-
-.fill{
-    height:100%;
-    background:#00c6ff;
-    border-radius:10px;
-}
-
-.contact{
-    margin-top:20px;
-    font-size:14px;
-    color:#d5e4ff;
-}
-
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:20px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    text-decoration:none;
-    color:white;
-    padding:10px 18px;
-    border-radius:20px;
-    font-size:14px;
-}
-
-.email{
-    background:#1976d2;
-}
-
-.instagram{
-    background:#e1306c;
-}
-
-.github{
-    background:#333;
-}
-</style>
+        .btn-link:hover {
+            background-color: #fbc02d;
+            color: #ffffff;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="moon"></div>
+    <div class="card">
+        <img src="foto-profil.jpg" alt="Foto Profil" class="avatar">
 
-<div class="card">
+        <h1 class="name">Nasywa Kayana</h1>
+        <div class="badge">Mahasiswa Manajemen Informasi dan Komunikasi</div>
 
-    <div class="header"></div>
-
-<img src="kuceng.jpg" alt="Foto Profil" class="profile-img">
-
-    <div class="content">
-
-        <h1>Naura</h1>
-
-        <div class="badge">
-            Mahasiswa Manajemen Informasi Komunikasi
-        </div>
-
-        <p class="desc">
-            Halo! Saya mahasiswa yang sedang belajar Cloud Computing,
-            Web Development, dan teknologi digital untuk mengembangkan
-            keterampilan di dunia IT.
+        <p class="bio">
+            Halo! Saya Nasywa, mahasiswa semester 3 Program Studi Manajemen Informasi dan Komunikasi. Saya memiliki ketertarikan pada bidang komunikasi, media kreatif, dan produksi konten digital. Saya senang mengeksplorasi ide-ide baru, mempelajari hal-hal kreatif, serta mengembangkan kemampuan dalam bidang desain, penulisan, dan produksi media.
         </p>
 
-        <div class="section">
-            <div class="section-title">HOBI & MINAT</div>
+        <div class="section-title">HOBI & MINAT</div>
+        <div class="tags">
+            <span class="tag">Food Hunting</span>
+            <span class="tag">Fotografi</span>
+            <span class="tag">Mendaki Gunung</span>
+            <span class="tag">Desain Grafis</span>
+        </div>
 
-            <div class="tags">
-                <div class="tag">Cloud Computing</div>
-                <div class="tag">Web Development</div>
-                <div class="tag">Musik</div>
-                <div class="tag">Membaca</div>
+        <div class="section-title">KEMAMPUAN</div>
+        <div class="skill-item">
+            <div class="skill-info">
+                <span>Design Grafis</span>
+                <span>80%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 80%;"></div>
             </div>
         </div>
 
-        <div class="section">
-            <div class="section-title">KEMAMPUAN</div>
-
-            <div class="skill">
-                <span>Cloud Computing</span>
-                <div class="bar">
-                    <div class="fill" style="width:75%"></div>
-                </div>
+        <div class="skill-item">
+            <div class="skill-info">
+                <span>Video Editing</span>
+                <span>65%</span>
             </div>
-
-            <div class="skill">
-                <span>HTML & CSS</span>
-                <div class="bar">
-                    <div class="fill" style="width:70%"></div>
-                </div>
-            </div>
-
-            <div class="skill">
-                <span>Komunikasi</span>
-                <div class="bar">
-                    <div class="fill" style="width:85%"></div>
-                </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 65%;"></div>
             </div>
         </div>
 
-        <div class="section">
-            <div class="section-title">KONTAK</div>
-
-            <div class="contact">
-                Email: mahasiswa@email.com
+        <div class="skill-item">
+            <div class="skill-info">
+                <span>Social Media Management</span>
+                <span>70%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 70%;"></div>
             </div>
         </div>
 
-        <div class="buttons">
-            <a href="mailto:mahasiswa@email.com" class="btn email">Email</a>
-            <a href="#" class="btn instagram">Instagram</a>
-            <a href="#" class="btn github">GitHub</a>
-        </div>
+        <div class="section-title">PORTOFOLIO</div>
+        <a href="#" class="btn-link">📁 Portofolio</a>
 
+        <div class="section-title">KONTAK</div>
+        <a href="mailto:aisyahnasywakayana1307@gmail.com" class="btn-link">✉️ Email: aisyahnasywakayana1307@gmail.com</a>
     </div>
-</div>
 
 </body>
 </html>
