@@ -110,12 +110,18 @@ body::before{
     height:140px;
     border-radius:50%;
     object-fit:cover;
-    object-position:center top;
+
+    /* Membuat foto naik */
     margin-top:-70px;
-    border:8px solid #071f49;
+
+    /* Bingkai tebal */
+    border:8px solid #0b2452;
+
+    /* Efek timbul */
     box-shadow:
-        0 10px 25px rgba(0,0,0,.5),
-        0 0 15px rgba(0,0,0,.3);
+        0 10px 25px rgba(0,0,0,0.5),
+        0 0 0 5px rgba(255,255,255,0.1);
+
     position:relative;
     z-index:10;
 }
