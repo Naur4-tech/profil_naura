@@ -73,6 +73,8 @@ body::before{
     text-align:center;
     box-shadow:0 20px 40px rgba(0,0,0,.5);
     z-index:2;
+
+    position:relative;
 }
 
 .header{
@@ -104,14 +106,18 @@ body::before{
 }
 
 .profile-img{
-    width:130px;
-    height:130px;
+    width:140px;
+    height:140px;
     border-radius:50%;
     object-fit:cover;
-    object-position:center;
-    border:5px solid white;
-    margin-top:-65px;
-    box-shadow:0 0 20px rgba(255,255,255,.4);
+    object-position:center top;
+    margin-top:-70px;
+    border:8px solid #071f49;
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.5),
+        0 0 15px rgba(0,0,0,.3);
+    position:relative;
+    z-index:10;
 }
 
 .content{
